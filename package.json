@@ -1,0 +1,52 @@
+{
+  "name": "monitor",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "npx babel-node src/index.js",
+    "reset": "npx babel-node src/index.js --reset",
+    "force": "npx babel-node src/index.js --force",
+    "quiet": "npx babel-node src/index.js --quiet",
+    "fix": "npx prettier-eslint --write src/{,**/}*.js",
+    "lint": "npx eslint src/{,**/}*.js",
+    "dev": "npx chokidar src/ -c 'npm run fix && npx babel-node src/index.js'",
+    "precommit": "lint-staged",
+    "cm": "git-cz"
+  },
+  "lint-staged": {
+    "*.js": ["npx prettier-eslint --write", "npx eslint", "git add"],
+    "{,.}*{rc,.json}": ["npx prettier-eslint --write", "git add"]
+  },
+  "dependencies": {
+    "@paleite/lockfile": "^1.0.0",
+    "axios": "^0.17.1",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-module-resolver": "^3.0.0",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-plugin-wildcard": "^4.0.0",
+    "babel-preset-env": "^1.6.1",
+    "chokidar": "^2.0.1",
+    "deep-object-diff": "^1.1.0",
+    "eslint": "^4.17.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.1.0",
+    "lowdb": "^1.0.0",
+    "md5": "^2.2.1",
+    "minimist": "^1.2.0",
+    "minimist-options": "^3.0.2",
+    "object-hash": "^1.2.0",
+    "ora": "^1.4.0",
+    "prettier-eslint": "^8.8.1"
+  },
+  "repository": "https://github.com/paleite/monitor.git",
+  "author": "Patrick Eriksson <paleite@kth.se>",
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
