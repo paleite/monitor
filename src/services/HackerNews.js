@@ -15,8 +15,8 @@ export default class HackerNews extends Service {
    * This function checks if a service has updated.
    * This function must be implemented for the service to work and is required
    * to return a promise. In this example, the library Axios is used, which
-   * returns promises.
-   * @returns {Promise} promise The promise of the service
+   * returns a promise.
+   * @returns {Promise} The promise of the service
    */
   check () {
     return this.axios

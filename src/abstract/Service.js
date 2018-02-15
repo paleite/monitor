@@ -11,7 +11,7 @@ import {diff} from 'deep-object-diff'
  */
 export default class Service {
   /**
-   * Constructor - Initializes the object and gives access to the database
+   * Initializes the object and gives access to the database
    */
   constructor () {
     const name = this.constructor.name
@@ -19,8 +19,10 @@ export default class Service {
       throw Error(`${name} must override check()`)
     }
 
+    /** @type {object} */
     this.db = arguments[0]
     this.db.defaults({services: []}).write()
+    /** @type {LodashWrapper} */
     this.dbData = this.db.get('services').find({name})
 
     // Create a row if the service doesn't exist
@@ -33,6 +35,7 @@ export default class Service {
     const {hash, hasChanged, data} = this.dbData.value()
     this.db._.merge(this, {hash, hasChanged, data})
 
+    /** @type {function} */
     this.axios = axios
   }
 
@@ -62,8 +65,9 @@ export default class Service {
 
   /**
    * A hash function with support for objects and strings
-   * @param {Object/string} input An object or string
-   * @returns {string} hash The hash of the input
+   * @private
+   * @param {Object|string} input An object or string
+   * @returns {string} The hash of the input
    */
   static _getHash (input) {
     const type = typeof input
@@ -79,24 +83,27 @@ export default class Service {
   }
 
   /**
-   * @type {Object/string}
+   * @type {Object|string}
    */
   get data () {
     return this._data
   }
 
   /**
-   * @param {Object/string} data An object or string
+   * @param {Object|string} data An object or string
    * @returns {undefined}
    */
   set data (data) {
     let hash = Service._getHash(data)
 
     if (this.hash !== hash) {
+      /** @type {string} */
       this.hash = hash
+      /** @type {boolean} */
       this.hasChanged = true
     }
 
+    /** @type {Object|string} */
     this._data = data
     this.updateDB()
   }

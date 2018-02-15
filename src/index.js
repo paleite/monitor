@@ -12,11 +12,13 @@ import db from '@/lib/db'
 
 import * as services from '@/services'
 
+/** @type {Boolean} */
 const hasServices = !!Object.keys(services).length
 if (!hasServices) {
   throw new Error("Couldn't find any services.")
 }
 
+/** @type {Lockfile} */
 const lf = new Lockfile(__filename)
 lf
   .lock()
