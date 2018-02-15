@@ -11,6 +11,7 @@
     "fix": "npx prettier-eslint --write src/{,**/}*.js",
     "lint": "npx eslint src/{,**/}*.js",
     "dev": "npx chokidar src/ -c 'npm run fix && npx babel-node src/index.js'",
+    "docs": "npx esdoc",
     "precommit": "lint-staged",
     "cm": "git-cz"
   },
@@ -28,6 +29,8 @@
     "babel-preset-env": "^1.6.1",
     "chokidar": "^2.0.1",
     "deep-object-diff": "^1.1.0",
+    "esdoc": "^1.0.4",
+    "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^4.17.0",
     "husky": "^0.14.3",
     "lint-staged": "^6.1.0",
