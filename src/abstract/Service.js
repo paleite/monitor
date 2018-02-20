@@ -33,7 +33,7 @@ export default class Service {
         .write()
     }
     const {hash, hasChanged, data} = this.dbData.value()
-    this.db._.merge(this, {hash, hasChanged, data})
+    this.db._.merge(this, {hash, hasChanged, originalData: data})
 
     /** @type {function} */
     this.axios = axios
