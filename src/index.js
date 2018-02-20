@@ -41,7 +41,7 @@ lf
     for (const service in services) {
       const spinner = ora({
         text: `${service}: Checking`,
-        enabled: !args.quiet
+        enabled: !(args.quiet || args.cron)
       }).start()
 
       let serviceInstance
@@ -62,7 +62,11 @@ lf
           .check()
           .then(() => {
             if (serviceInstance.hasChanged) {
-              spinner.warn(`${service}: New update!`)
+              const message = `${service}: New update!`
+              if (args.cron) {
+                console.log(message)
+              }
+              spinner.warn(message)
             } else {
               spinner.succeed(`${service}: Up to date.`)
             }

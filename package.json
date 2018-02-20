@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "npx babel-node src/index.js",
+    "cron": "npx babel-node src/index.js --cron",
     "reset": "npx babel-node src/index.js --reset",
     "force": "npx babel-node src/index.js --force",
     "quiet": "npx babel-node src/index.js --quiet",
